@@ -6,6 +6,18 @@ Implementation here is fairly loosely coupled and the whole project is close eno
 
 At the moment Couchy supports single-doc CRUD, database creation and destruction. Credentials are username and password but after the first query, a session is started and Cookies are used instead.
 
+## How to install
+
+I'd strongly recommend using NuGet packages. This project is built originally on .NET 5 but I made sure to provide a secondary project for .NET Standard 2.1.
+
+If your project is using .NET Standard 2.1:
+`dotnet add package Couchy.NetStandard2.1`
+
+If your project is using .NET 5.0:
+`dotnet add package Couchy`
+
+Since .NET is finally heading the right direction and Xamarin morphs into MAUI which will make use of .NET 6, I will remove the .NET Standard 2.1 variant when .NET 6 LTS is released.
+
 ## How to use
 
 For every type of document you will need to create a class that implements the `IDocument` interface. If you're working with a simple one-doc schema you're in luck.
