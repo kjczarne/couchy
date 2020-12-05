@@ -12,7 +12,7 @@ namespace Couchy.Tests
         private Client _client;
 
         [OneTimeSetUp]
-        public void Setup()
+        public void SetUp()
         {
             _client = new Client(
                 "http://localhost:5984",
