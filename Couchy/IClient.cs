@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Couchy
 {
@@ -21,6 +22,30 @@ namespace Couchy
         ICredProvider Credentials { get; }
 
         CookieContainer CookieJar { get; }
+
+        /// <summary>
+        /// A closure-style method that sends any generic
+        /// HTTP Request to the CouchDb Server.
+        /// </summary>
+        /// <param name="httpMethod">
+        /// System.Net.Http.HttpMethod</param>
+        /// <param name="url">Uri instance</param>
+        /// <param name="content">HttpContent instance</param>
+        /// <param name="additionalHeaders">
+        /// A string:string dictionary of additional headers
+        /// to send along with the request. Can be null if not used.</param>
+        /// <param name="onFailure">
+        /// Parameterless Action to be run when a non-successful
+        /// code is encountered or an HTTP Client threw an
+        /// error.</param>
+        /// <returns>An HttpResponse Message</returns>
+        Task<HttpResponseMessage> SendRequest(
+            HttpMethod httpMethod,
+            Uri url,
+            HttpContent content,
+            Dictionary<string, string> additionalHeaders,
+            Action onFailure
+        );
 
         /// <summary>
         /// URL to the CouchDb Server.
@@ -51,13 +76,13 @@ namespace Couchy
         /// <summary>
         /// Authorizes the client for a session.
         /// </summary>
-        /// <returns>async Task</returns>
+        /// <returns>Status Code</returns>
         Task<HttpStatusCode> LogIn();
 
         /// <summary>
         /// Ends client's session.
         /// </summary>
-        /// <returns>async Task</returns>
+        /// <returns>Status Code</returns>
         Task<HttpStatusCode> LogOut();
 
         /// <summary>
@@ -65,8 +90,7 @@ namespace Couchy
         /// </summary>
         /// <param name="name">Name of the database
         /// to be created</param>
-        /// <returns>`true` if operation succeeded,
-        /// `false` otherwise.</returns>
+        /// <returns>Status Code</returns>
         Task<HttpStatusCode> CreateDb(string name);
 
         /// <summary>
@@ -74,8 +98,7 @@ namespace Couchy
         /// </summary>
         /// <param name="name">Name of the database
         /// to be deleted</param>
-        /// <returns>`true` if operation was
-        /// successful, `false` otherwise</returns>
+        /// <returns>Status Code</returns>
         Task<HttpStatusCode> DeleteDb(string name);
     }
 }
