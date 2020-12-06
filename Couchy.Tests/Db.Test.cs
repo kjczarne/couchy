@@ -85,7 +85,7 @@ namespace Couchy.Tests
         [Test, Order(2)]
         public async Task TestDocRead()
         {
-            var response = await _db.Read<TestDoc>("lol", null);
+            var response = await _db.Read<TestDoc>("lol");
             Assert.That(response.Id == "lol");
         }
 
@@ -99,7 +99,7 @@ namespace Couchy.Tests
 
             var response = await _db.Update(newDoc);
             Assert.That(HttpHandler.IsSuccessStatusCode(response));
-            var readResponse = await _db.Read<TestDoc>("lol", null);
+            var readResponse = await _db.Read<TestDoc>("lol");
             Assert.That(((TestDoc)readResponse).Content == "lulz");
         }
 

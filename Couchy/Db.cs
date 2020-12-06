@@ -61,7 +61,7 @@ namespace Couchy
             return response.StatusCode;
         }
 
-        public async Task<IDocument> Read<T>(string id, string revision) where T : IDocument
+        public async Task<IDocument> Read<T>(string id) where T : IDocument
         {
             var response = await _getDocResponse(id);
             var jsonString = await response.Content.ReadAsStringAsync();

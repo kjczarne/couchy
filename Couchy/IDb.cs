@@ -46,7 +46,7 @@ namespace Couchy
         /// <param name="revision"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        Task<IDocument> Read<T>(string id, string revision) where T : IDocument;
+        Task<IDocument> Read<T>(string id) where T : IDocument;
 
         /// <summary>
         /// Tests whether a document with a given ID
